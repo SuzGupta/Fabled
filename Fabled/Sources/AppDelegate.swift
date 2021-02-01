@@ -6,8 +6,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Bungie.key = FabledAppKey
-        Bungie.appId = FabledAppId
+        Bungie.key = "d114c972cfd34a4696c1723f5b482836"
+        Bungie.appId = "39809"
         Bungie.appVersion = Bundle.main.releaseVersionNumber
 
         DisplayScale.maxScaling = .x375
@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.makeKeyAndVisible()
 
         return true
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        if let alert = window?.rootViewController?.presentedViewController as? UIAlertController {
+            alert.dismiss(animated: true)
+        }
     }
 
 }

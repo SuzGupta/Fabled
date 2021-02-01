@@ -4,26 +4,26 @@ import Model
 
 /// Class for quickly testing and iterating on UI. Only compiled and presented when the active compiler
 /// flags `DEBUG` and `UIPREVIEW` are both set in Build Settings.
-final class DebugUIViewController: DeclarativeViewController {
-  private let currentGlory = State(initialValue: "1045")
-  private let playerRank = State(initialValue: GloryRank.brave(.III))
+final class DebugUIViewController: DeclarativeViewController, RootPresentationViewControllerDelegate {
+  private let currentGlory = State(initialValue: "2037")
+  private let playerRank = State(initialValue: GloryRank.heroic(.III))
   private lazy var playerRankText = playerRank.binding.map { String(describing: $0).uppercased() }
 
-  private let gloryToNextRank = State(initialValue: 5)
-  private let winsToNextRank = State<UInt>(initialValue: 1)
+  private let gloryToNextRank = State(initialValue: 63)
+  private let winsToNextRank = State<UInt>(initialValue: 2)
 
-  private let currentWinStreak = State<UInt>(initialValue: 1)
-  private let matchesPlayedThisWeek = State(initialValue: 2)
-  private let matchesWonThisWeek = State(initialValue: 1)
+  private let currentWinStreak = State<UInt>(initialValue: 0)
+  private let matchesPlayedThisWeek = State(initialValue: 0)
+  private let matchesWonThisWeek = State(initialValue: 0)
 
-  private let matchesRemainingForWeeklyBonus = State(initialValue: 1)
+  private let matchesRemainingForWeeklyBonus = State(initialValue: 3)
   private lazy var metWeeklyBonus = matchesRemainingForWeeklyBonus.binding.map { $0 == 0 }
   private let willRankUp = State(initialValue: true)
   private let gloryAtNextWeeklyReset = State(initialValue: 1253)
-  private let optimisticGloryAtNextWeeklyReset = State(initialValue: 1253)
+  private let optimisticGloryAtNextWeeklyReset = State(initialValue: 2113)
   private lazy var currentRankDecays = playerRank.binding.map { $0 >= .mythic(.I) }
 
-  private let winsToFabled = State(initialValue: "9")
+  private let winsToFabled = State(initialValue: "2")
   private lazy var winsToFabledIsZero = winsToFabled.binding.map { Int($0) == 0 }
   private lazy var moreWinsText = winsToFabled.binding.map { " MORE WIN" + (Int($0) != 1 ? "S" : "") }
 
@@ -36,7 +36,7 @@ final class DebugUIViewController: DeclarativeViewController {
 
           //MARK: Player Name, Glory & Rank
 
-          Text("starmunk")
+          Text("WeirdRituals")
             .font(Style.Font.title)
             .fontSize(DisplayScale.x375.scale(40))
             .alignment(.center)
@@ -50,7 +50,7 @@ final class DebugUIViewController: DeclarativeViewController {
             PillView(.plain,
               Text(currentGlory.binding, " GLORY")
                 .font(Style.Font.title)
-                .fontSize(18)
+                .fontSize(Style.Font.sizeForPill)
                 .color(Style.Color.text)
                 .adjustsFontSizeRelativeToDisplay(.x375)
               ),
@@ -60,7 +60,7 @@ final class DebugUIViewController: DeclarativeViewController {
             PillView(.emphasized,
               Text(playerRankText)
                 .font(Style.Font.title)
-                .fontSize(18)
+                .fontSize(Style.Font.sizeForPill)
                 .color(Style.Color.text)
                 .adjustsFontSizeRelativeToDisplay(.x375)
               ),
@@ -90,13 +90,13 @@ final class DebugUIViewController: DeclarativeViewController {
             PillView(.emphasized,
               Text(winsToFabled.binding)
                 .font(Style.Font.title)
-                .fontSize(18)
+                .fontSize(Style.Font.sizeForPill)
                 .color(Style.Color.text)
                 .adjustsFontSizeRelativeToDisplay(.x375)
               +
               Text(moreWinsText, " FOR FABLED")
                 .font(Style.Font.title)
-                .fontSize(18)
+                .fontSize(Style.Font.sizeForPill)
                 .color(Style.Color.text)
                 .adjustsFontSizeRelativeToDisplay(.x375)
             ),
@@ -112,7 +112,7 @@ final class DebugUIViewController: DeclarativeViewController {
             Spacer(.flexible),
 
             Button(#imageLiteral(resourceName: "escape_regular_m"))
-//              .observe(with: onChangePlayerPressed)
+              .observe(with: onChangePlayerPressed)
               .size(DisplayScale.x375.scaleWithHeight(22))
               .tintColor(Style.Color.deemphasized),
 
@@ -127,7 +127,7 @@ final class DebugUIViewController: DeclarativeViewController {
 
             Button(#imageLiteral(resourceName: "question_regular_m"))
               .observe(with: onMoreInfoPressed)
-              .size(DisplayScale.x375.scaleWithHeight(23))
+              .size(DisplayScale.x375.scaleWithHeight(22 + 2))
               .tintColor(Style.Color.deemphasized),
 
             Spacer(.flexible)
@@ -211,6 +211,12 @@ final class DebugUIViewController: DeclarativeViewController {
 
   private func onMoreInfoPressed() {
     present(MoreInfoViewController(), animated: true)
+  }
+
+  private func onChangePlayerPressed() {
+    //DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: ""))
+    //PMKHTTPError.badStatusCode(0, Data(), HTTPURLResponse())
+    presentationShouldDisplayAlert(for: Fabled.Error.genericUserFacing)
   }
 
   required init(coder: NSCoder = .empty) {

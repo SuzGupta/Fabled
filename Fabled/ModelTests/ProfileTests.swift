@@ -469,6 +469,11 @@ class ProfileTests: XCTestCase {
         XCTAssert(profile.pessimisticGloryAtNextWeeklyReset == expectedAmount)
     }
 
+    func testPessimisticGloryAtNextWeeklyResetDoesNotReturnNegativeValues() {
+        let zeroGloryProfile = generateProfile(at: GloryRank(points: 0))
+        XCTAssertGreaterThanOrEqual(zeroGloryProfile.pessimisticGloryAtNextWeeklyReset, 0)
+    }
+
     func testOptimisticGloryAtNextWeeklyResetReturnsExpectedAmountWithNoMatchesYetPlayed() {
         let rank = GloryRank.heroic(.III)
         let profile = generateProfile(at: rank, progressOffset: 200) //ensures no profile rank-down with losses
@@ -552,7 +557,7 @@ private func generateProfile(with histories: [ActivityHistory] = [], at rank: Gl
         Profile(
             player: Player(
                 displayName: "WeirdRituals",
-                membershipType: Bungie.Platform.blizzard.rawValue,
+                membershipType: Bungie.Platform.steam.rawValue,
                 membershipId: "4611686018468167462"),
             glory: Progression(
                 dailyProgress: 0,
