@@ -1,6 +1,5 @@
 .DS_Store
 /.build
 **/xcuserdata
-Carthage/
 PRIVATE_KEYS.swift
 *.png

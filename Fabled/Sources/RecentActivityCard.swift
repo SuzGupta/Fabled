@@ -34,8 +34,12 @@ final class RecentActivityCard: CardView {
 
   init(winStreak: Binding<UInt>, matchesPlayed: Binding<Int>, matchesWon: Binding<Int>) {
     currentWinStreakValue = winStreak.map(String.init)
-    matchesThisWeekText = matchesPlayed.map { String($0) + ($0 == 1 ? " match" : " matches") + " this week" }
-    winsThisWeekText = matchesWon.map { String($0) + ($0 == 1 ? " win" : " wins") + " this week" }
+    matchesThisWeekText = matchesPlayed.map { matchesNumber in
+      return "\(matchesNumber)" + (matchesNumber == 1 ? " match" : " matches") + " this week"
+    }
+    winsThisWeekText = matchesWon.map { winsNumber in
+      return "\(winsNumber)" + (winsNumber == 1 ? " win" : " wins") + " this week"
+    }
     super.init()
   }
 

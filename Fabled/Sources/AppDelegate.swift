@@ -6,8 +6,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Bungie.key = FabledAppKey
-        Bungie.appId = FabledAppId
+        Bungie.key = "d114c972cfd34a4696c1723f5b482836"
+        Bungie.appId = "39809"
         Bungie.appVersion = Bundle.main.releaseVersionNumber
 
         DisplayScale.maxScaling = .x375

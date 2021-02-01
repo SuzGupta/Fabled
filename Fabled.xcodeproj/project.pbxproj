@@ -46,7 +46,6 @@
 		0D25377A2322FBB30029B18C /* Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2537792322FBB30029B18C /* Conditional.swift */; };
 		0D55DAFA2310351B00374ED9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D55DAF92310351B00374ED9 /* View.swift */; };
 		0D55DAFC2310373100374ED9 /* DeclarativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D55DAFB2310373100374ED9 /* DeclarativeView.swift */; };
-		0D70F8C522EA42F10025C83D /* PRIVATE_KEYS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D70F8C422EA42F10025C83D /* PRIVATE_KEYS.swift */; };
 		0D70F8CA22EA50D90025C83D /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D70F8C922EA50D90025C83D /* State.swift */; };
 		0D9303FF22E93A5E00992637 /* PMKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0D7EE322E79310009388CD /* PMKFoundation.framework */; };
 		0D93040122E93A5E00992637 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0D7EE222E79310009388CD /* PromiseKit.framework */; };
@@ -595,7 +594,6 @@
 				0D0B60E622E66414009D0FEF /* Layout.swift in Sources */,
 				0D0B60C122E660B4009D0FEF /* AppDelegate.swift in Sources */,
 				0D0B60E022E66414009D0FEF /* Label.swift in Sources */,
-				0D70F8C522EA42F10025C83D /* PRIVATE_KEYS.swift in Sources */,
 				0D0A79C7230B0EE3002829C4 /* MoreInfoViewController.swift in Sources */,
 				0D0B60E222E66414009D0FEF /* StackView.swift in Sources */,
 			);
