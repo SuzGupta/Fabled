@@ -28,7 +28,7 @@ final class NextRankupCard: CardView {
 
   init(gloryRemaining: Binding<Int>, winsRemaining: Binding<UInt>) {
     gloryToNextRankValue = gloryRemaining.map(String.init)
-    winsToGoText = winsRemaining.map { String($0) + ($0 == 1 ? " win" : " wins") + " to go"}
+    winsToGoText = winsRemaining.map { $0 + $0 == 1 ? " win" : " wins" + " to go" }
     super.init()
   }
 
